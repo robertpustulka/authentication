@@ -50,7 +50,7 @@ Configure::write('App', [
 ]);
 
 if (!getenv('db_dsn')) {
-    putenv('db_dsn=sqlite:///:memory:');
+    putenv('db_dsn=sqlite:///tmp/db.sqlite');
 }
 ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);
 

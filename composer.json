@@ -21,10 +21,12 @@
         "cakephp/cakephp": "~3.5",
         "cakephp/cakephp-codesniffer": "^3.0",
         "phpunit/phpunit": "^5.7.14|^6.0",
-        "firebase/php-jwt": "~4.0"
+        "firebase/php-jwt": "~4.0",
+        "doctrine/orm": "^2.6"
     },
     "suggest": {
         "cakephp/orm": "To use \"OrmResolver\" (Not needed separately if using full CakePHP framework).",
+        "doctrine/orm": "To use \"DoctrineResolver\".",
         "cakephp/cakephp": "Install version >=3.5.0 to use \"CookieAuthenticator\".",
         "firebase/php-jwt": "If you want to use the JWT adapter add this dependency",
         "ext-ldap": "Make sure this php extension is installed and enabled on your system if you want to use the built-in LDAP adapter for \"LdapIdentifier\".",

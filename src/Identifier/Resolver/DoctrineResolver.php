@@ -15,19 +15,37 @@
 namespace Authentication\Identifier\Resolver;
 
 use Authentication\Identifier\Resolver\ResolverInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 class DoctrineResolver implements ResolverInterface
 {
-    protected $manager;
+    /**
+     * @var \Doctrine\Common\Persistence\ObjectRepository
+     */
+    protected $repository;
 
-    public function __construct(EntityManagerInterface $manager)
+    /**
+     * @var array
+     */
+    protected $conditions = [];
+
+    /**
+     * Constructor.
+     *
+     * @param \Doctrine\Common\Persistence\ObjectRepository $repository Repository.
+     * @param array $conditions Extra conditions.
+     */
+    public function __construct(ObjectRepository $repository, array $conditions = [])
     {
-        $this->manager = $manager;
+        $this->repository = $repository;
+        $this->conditions = $conditions;
     }
 
-    public function find(array $conditions, $type = self::TYPE_AND)
+    /**
+     * {@inheritDoc}
+     */
+    public function find(array $conditions)
     {
-
+        return $this->repository->findOneBy($conditions + $this->conditions);
     }
 }
